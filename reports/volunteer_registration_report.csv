@@ -1,0 +1,25 @@
+index,mobile,name,status,is_already_submitted,popup_title,popup_text,response_time_ms,error_message,timestamp
+1,6363532322,Bhuvan H O,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1079.0,,2026-08-19 22:29:38
+2,7353981795,Dheeraj,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1043.02,,2026-08-19 22:29:39
+3,7406404556,Vinoth P,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,960.4,,2026-08-19 22:29:40
+4,7676550158,Amith,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1101.74,,2026-08-19 22:29:41
+5,7760347765,Ramesh Jadhav,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1191.77,,2026-08-19 22:29:42
+6,7892025797,Vishal Patil,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1020.75,,2026-08-19 22:29:43
+7,7996487293,Pruthviraj,FAIL,False,Not Submitted,,994.74,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:29:44
+8,8072580612,Rithik Kannan V,FAIL,False,Not Submitted,,982.22,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:29:45
+9,8096175637,Gireesh,FAIL,False,Not Submitted,,1007.39,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:29:46
+10,8618466139,Gujarati Manikanta,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1024.21,,2026-08-19 22:29:47
+11,8746923989,Sanketh Pondla S,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,971.99,,2026-08-19 22:29:48
+12,8762294208,JEEVAN C,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1797.07,,2026-08-19 22:29:50
+13,9008192394,Pruthvik,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,2140.43,,2026-08-19 22:29:52
+14,9019820651,Dilip K N,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1140.47,,2026-08-19 22:29:54
+15,9036897828,Tejas Rao,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,990.65,,2026-08-19 22:29:54
+16,9148285978,Eranna G,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,992.67,,2026-08-19 22:29:55
+17,9353043998,Vishwas H O,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,942.62,,2026-08-19 22:29:56
+18,9449691850,Gagan P,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1015.38,,2026-08-19 22:29:57
+19,9538375699,Pradesh,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1013.03,,2026-08-19 22:29:58
+20,9561478776,Rahul Salve,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1437.04,,2026-08-19 22:30:00
+21,9880157435,Suhas,FAIL,False,Not Submitted,,1707.25,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:30:02
+22,9840580521,Rohit Kumar Sahu,PASS,True,Already submitted,You have already submitted this form. Do you want to edit your response?,1495.24,,2026-08-19 22:30:03
+23,9877863314,Parth,FAIL,False,Not Submitted,,1246.83,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:30:04
+24,9886725370,Vijayanand Patil R,FAIL,False,Not Submitted,,1024.21,Volunteer has not submitted registration yet (alreadySubmitted=False),2026-08-19 22:30:05
