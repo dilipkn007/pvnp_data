@@ -4,6 +4,13 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+# Check optional Excel export support
+try:
+    import openpyxl  # noqa: F401
+    HAS_OPENPYXL = True
+except ImportError:
+    HAS_OPENPYXL = False
+
 # Setup paths
 BASE_DIR = Path(__file__).resolve().parent
 SCRIPTS_DIR = BASE_DIR / "scripts"
