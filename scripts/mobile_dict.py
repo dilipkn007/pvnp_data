@@ -1,4 +1,3 @@
-from sys import monitoring
 import csv
 from pathlib import Path
 

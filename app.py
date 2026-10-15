@@ -233,6 +233,8 @@ def to_csv_bytes(df: pd.DataFrame) -> bytes:
 
 def to_excel_bytes(df: pd.DataFrame, sheet_name="Contacts") -> bytes:
     """Export single DataFrame to styled Excel bytes using openpyxl."""
+    if not HAS_OPENPYXL:
+        raise ImportError("openpyxl is required for Excel export. Please install it with: pip install openpyxl")
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         df.to_excel(writer, index=False, sheet_name=sheet_name[:31])
@@ -247,6 +249,8 @@ def to_excel_bytes(df: pd.DataFrame, sheet_name="Contacts") -> bytes:
 
 def to_multi_sheet_excel(categories: dict) -> bytes:
     """Export all categories into a single multi-sheet Excel file."""
+    if not HAS_OPENPYXL:
+        raise ImportError("openpyxl is required for Excel export. Please install it with: pip install openpyxl")
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         for cat_name, data in categories.items():
@@ -304,16 +308,19 @@ def main():
     st.sidebar.divider()
     # Bulk Export in Sidebar
     st.sidebar.subheader("📦 Bulk Export")
-    if st.sidebar.button("Prepare All-in-One Excel Workbook", use_container_width=True):
-        with st.spinner("Generating multi-sheet Excel file..."):
-            multi_excel_bytes = to_multi_sheet_excel(categories)
-            st.sidebar.download_button(
-                label="📥 Download All Categories (.xlsx)",
-                data=multi_excel_bytes,
-                file_name="PVND_All_Categories_Contacts.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                use_container_width=True,
-            )
+    if st.sidebar.button("Prepare All-in-One Excel Workbook", width="stretch"):
+        if not HAS_OPENPYXL:
+            st.sidebar.error("Excel export requires `openpyxl`. Please add it to `requirements.txt`.")
+        else:
+            with st.spinner("Generating multi-sheet Excel file..."):
+                multi_excel_bytes = to_multi_sheet_excel(categories)
+                st.sidebar.download_button(
+                    label="📥 Download All Categories (.xlsx)",
+                    data=multi_excel_bytes,
+                    file_name="PVND_All_Categories_Contacts.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    width="stretch",
+                )
 
     # Main Tabs
     tab_preview, tab_compare, tab_overview = st.tabs(["📋 Preview & Download", "⚖️ Compare Categories", "📊 All Categories Overview"])
@@ -370,7 +377,6 @@ def main():
         col_dl1, col_dl2, col_dl3 = st.columns(3)
 
         csv_data = to_csv_bytes(filtered_df)
-        excel_data = to_excel_bytes(filtered_df, sheet_name=selected_category_name)
 
         with col_dl1:
             st.download_button(
@@ -378,17 +384,26 @@ def main():
                 data=csv_data,
                 file_name=f"{slug}.csv",
                 mime="text/csv",
-                use_container_width=True,
+                width="stretch",
             )
 
         with col_dl2:
-            st.download_button(
-                label=f"📊 Download Excel ({len(filtered_df)} contacts)",
-                data=excel_data,
-                file_name=f"{slug}.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                use_container_width=True,
-            )
+            if HAS_OPENPYXL:
+                excel_data = to_excel_bytes(filtered_df, sheet_name=selected_category_name)
+                st.download_button(
+                    label=f"📊 Download Excel ({len(filtered_df)} contacts)",
+                    data=excel_data,
+                    file_name=f"{slug}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    width="stretch",
+                )
+            else:
+                st.button(
+                    label="📊 Excel export unavailable",
+                    disabled=True,
+                    help="openpyxl is not installed. Add openpyxl to requirements.txt",
+                    width="stretch",
+                )
 
         with col_dl3:
             # Full category download (unfiltered) if search is active
@@ -399,7 +414,7 @@ def main():
                     data=full_csv,
                     file_name=f"{slug}_full.csv",
                     mime="text/csv",
-                    use_container_width=True,
+                    width="stretch",
                 )
 
         st.divider()
@@ -411,7 +426,7 @@ def main():
         else:
             st.dataframe(
                 filtered_df,
-                use_container_width=True,
+                width="stretch",
                 height=520,
                 column_config={
                     "Phone Number": st.column_config.TextColumn("Phone Number", width="medium"),
@@ -512,18 +527,26 @@ def main():
                 data=to_csv_bytes(subset_df),
                 file_name=f"{subset_filename}.csv",
                 mime="text/csv",
-                use_container_width=True,
+                width="stretch",
             )
         with col_comp_dl2:
-            st.download_button(
-                label=f"📊 Download Result as Excel ({len(subset_df)} contacts)",
-                data=to_excel_bytes(subset_df, sheet_name="Comparison_Result"),
-                file_name=f"{subset_filename}.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                use_container_width=True,
-            )
+            if HAS_OPENPYXL:
+                st.download_button(
+                    label=f"📊 Download Result as Excel ({len(subset_df)} contacts)",
+                    data=to_excel_bytes(subset_df, sheet_name="Comparison_Result"),
+                    file_name=f"{subset_filename}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    width="stretch",
+                )
+            else:
+                st.button(
+                    label="📊 Excel export unavailable",
+                    disabled=True,
+                    help="openpyxl is not installed. Add openpyxl to requirements.txt",
+                    width="stretch",
+                )
 
-        st.dataframe(subset_df, use_container_width=True, height=400)
+        st.dataframe(subset_df, width="stretch", height=400)
 
     # TAB 3: All Categories Overview
     with tab_overview:
@@ -545,7 +568,7 @@ def main():
 
         st.dataframe(
             summary_df,
-            use_container_width=True,
+            width="stretch",
             height=500,
             column_config={
                 "Total Contacts": st.column_config.NumberColumn("Total Contacts", format="%d"),
