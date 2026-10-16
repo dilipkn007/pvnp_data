@@ -117,6 +117,12 @@ def get_categories():
             "desc": "Jagannath Puri Dham trip list",
             "slug": "jagannath_puri_dham_25_12_2026",
         },
+        "Approaching for Puri Trip": {
+            "dict": getattr(mobile_dict, "approaching_for_Puri_trip", {}),
+            "group": "Trips & Yatras",
+            "desc": "Contacts approached for the Jagannath Puri Dham trip",
+            "slug": "approaching_for_Puri_trip",
+        },
         "Pune HK Valley Trip (2026)": {
             "dict": getattr(mobile_dict, "pune_hkvalley_trip_2026", {}),
             "group": "Trips & Yatras",
